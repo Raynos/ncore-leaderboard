@@ -29,7 +29,6 @@ var HandleUpdate = {
 
 var HandleIncrementScore = {
     start: function () {
-        console.log("increment", this.req.body)
         this.domain.incrementScore(this.req.body.id,
             this.redirect)
     },
@@ -58,6 +57,5 @@ function handle(klass, self) {
 }
 
 function redirect() {
-    console.log("redirecting data", arguments)
     this.res.redirect("/players")
 }

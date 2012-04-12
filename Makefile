@@ -12,7 +12,13 @@ test-cov: lib-cov
 lib-cov:
 	@jscoverage lib lib-cov
 
+build:
+	node ./src/build.js
+
 start:
-	supervisor ./src/core.js
+	supervisor ./index.js
+
+ncore:
+	./node_modules/.bin/ncore -o ./src/static/bundle.js ./src/modules
 
 .PHONY: test test-cov

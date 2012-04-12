@@ -26,10 +26,6 @@ module.exports = extend(Players, {
         }, callback)
     },
     incrementScore: function (id, callback) {
-        console.log("increment", id)
-        this.find({ id: id }).toArray(function (err, user) {
-            console.log("finding", arguments)
-        })
         this._update({
             id: id
         }, {

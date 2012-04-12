@@ -6,7 +6,7 @@
     "author": "Raynos <raynos2@gmail.com>",
     "main": "index",
     "dependencies": {
-        "ncore": "1.3.8",
+        "ncore": "1.3.9",
         "director": "1.0.9-1",
         "express": "git://github.com/visionmedia/express.git",
         "pd": "0.6.3",

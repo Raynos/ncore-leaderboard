@@ -8,5 +8,8 @@
     "./server/routes": {
         "domain": "./server/domains",
         "view": "./server/views"
+    },
+    "./client/app.js": {
+        "routes": ["./client/routes"]
     }
 }

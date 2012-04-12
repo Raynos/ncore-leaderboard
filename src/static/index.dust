@@ -3,6 +3,7 @@
     <head>
         <title> nCore leaderboard </title>
         <link rel="stylesheet" href="/leaderboard.css">
+        <script src="/bundle.js"></script>
     </head>
     <body>
         <div id="outer">
