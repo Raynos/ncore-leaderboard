@@ -1,0 +1,29 @@
+<div class="leaderboard">
+    {#members}
+        <form method="POST" action="/players/{id}">
+            <input type="hidden" name="_method" value="put"/>
+            <input class="name" name="name" value="{name}"/>
+            <input class="score" name="score" value="{score}"/>
+            <input type="submit" value="Update player"/>
+        </form>
+    {/members}
+    <form method="POST" action="/players">
+        <fieldset>
+            <legend> add player </legend>
+            <input class="name" name="name" placeholder="name"/>
+            <input class="score" name="score" placeholder="score"/>
+            <input type="submit" value="Add new player"/>
+        </fieldset>
+    </form>
+</div>
+
+<div class="details">
+    <form method="POST" action="/players/incrementScore">
+        <select name="id">
+            {#members}
+                <option value="{id}">{name}</option>
+            {/members}
+        </select>
+        <input type="submit" class="inc" value="Give 5 points" />
+    </form>
+</div>

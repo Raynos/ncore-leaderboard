@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> nCore leaderboard </title>
+        <link rel="stylesheet" href="/leaderboard.css">
+    </head>
+    <body>
+        <div id="outer">
+            {>players/}
+        </div>
+    </body>
+</html>
