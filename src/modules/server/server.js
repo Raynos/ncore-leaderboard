@@ -4,8 +4,9 @@ module.exports = {
     init: function () {
         var server = this.server = http.createServer()
         server.on("request", this.request)
-        console.log("listening on port 8080")
         server.listen(8080)
+        console.log("listening on port 8080")
+        this.mongo.start(server)
     },
     request: function (req, res) {
         this.app.handle(req, res)

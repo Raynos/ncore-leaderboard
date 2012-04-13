@@ -1,18 +1,23 @@
 {
     "./server/server.js": {
-        "app": "./server/app.js"
+        "app": "./server/app.js",
+        "mongo": "./shared/util/mongo.js"
     },
     "./server/app.js": {
         "routes": ["./server/routes"]
     },
     "./server/routes": {
-        "domain": "./server/domains",
+        "domain": "./shared/domains",
         "view": "./server/views"
+    },
+    "./shared/domains": {
+        "mongo": "./shared/util/mongo.js"
     },
     "./client/app.js": {
         "routes": ["./client/routes"]
     },
     "./client/routes": {
+        "domain": "./shared/domains",
         "view": "./client/views"
     },
     "./client/views": {

@@ -28,8 +28,6 @@ module.exports = {
             selected = document.getElementsByClassName("selected")[0],
             selected_name = selected && selected.firstElementChild.textContent
 
-        console.log(selected && selected_name)
-
         this.util.template("/addPoints.dust", {
             selected_name: selected_name
         }, function (err, frag) {
