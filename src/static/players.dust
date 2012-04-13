@@ -1,13 +1,13 @@
 <div class="leaderboard">
     {#members}
-        <form method="POST" action="/players/{id}">
+        <form class="player" method="POST" action="/players/{id}">
             <input type="hidden" name="_method" value="put"/>
-            <input class="name" name="name" value="{name}"/>
-            <input class="score" name="score" value="{score}"/>
+            <input name="name" value="{name}"/>
+            <input name="score" value="{score}"/>
             <input type="submit" value="Update player"/>
         </form>
     {/members}
-    <form method="POST" action="/players">
+    <form id="addPlayer" method="POST" action="/players">
         <fieldset>
             <legend> add player </legend>
             <input class="name" name="name" placeholder="name"/>

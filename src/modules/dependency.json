@@ -11,5 +11,11 @@
     },
     "./client/app.js": {
         "routes": ["./client/routes"]
+    },
+    "./client/routes": {
+        "view": "./client/views"
+    },
+    "./client/views": {
+        "util": "./client/utils/view.js"
     }
 }

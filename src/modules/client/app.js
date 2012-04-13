@@ -1,8 +1,33 @@
 var Router = {
     handle: function (event) {
-        console.log("popstate", event)
-        console.log("history", history)
-    }
+        var uri = window.location.pathname
+        this._routes.forEach(function (route) {
+            if (route.uri === uri) {
+                route.dispatch({
+                    uri: uri,
+                    event: event
+                })
+            }
+        })
+    },
+    get: function (uri, callback) {
+        this._routes.push({
+            uri: uri,
+            dispatch: callback
+        })
+    },
+    on: function (event, selector, callback) {
+        if (typeof selector === "function") {
+            callback = selector
+            selector = null
+        }
+        document.addEventListener(event, function () {
+            if (selector === null || this.matchesSelector(selector)) {
+                return callback.apply(this, arguments)
+            }
+        }, true)
+    },
+    _routes: []
 }
 
 window.onpopstate = function (event) {
