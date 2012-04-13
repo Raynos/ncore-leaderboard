@@ -1,4 +1,4 @@
-var toArray = Array.prototype.slice.call.bind(Array.prototype.slice)
+var composite = require("nodecomposite")
 
 module.exports = {
     enhance: function () {
@@ -6,10 +6,17 @@ module.exports = {
         this.enhanceAddPlayer()
         this.enhanceAddPoints()
     },
-    enhancePlayers: function () {
-        var players = document.getElementsByClassName("player")
+    selectPlayer: function (target) {
+        composite.By.class("selected").classList.remove("selected")
 
-        toArray(players).forEach(this.convertToSpans)
+        target.classList.add("selected")
+
+        this.enhanceAddPoints()
+    },
+    enhancePlayers: function () {
+        var nodes = composite.By.class("player")
+
+        nodes.forEach(this.convertToSpans)
     },
     enhanceAddPlayer: function () {
         var addPlayer = document.getElementById("addPlayer")
@@ -19,10 +26,12 @@ module.exports = {
     enhanceAddPoints: function () {
         var details = document.getElementsByClassName("details")[0],
             selected = document.getElementsByClassName("selected")[0],
-            selected_player = selected && selected.firstElementChild.textContent
+            selected_name = selected && selected.firstElementChild.textContent
+
+        console.log(selected && selected_name)
 
         this.util.template("/addPoints.dust", {
-            selected_player: selected_player
+            selected_name: selected_name
         }, function (err, frag) {
             details.parentNode.replaceChild(frag, details)
         })

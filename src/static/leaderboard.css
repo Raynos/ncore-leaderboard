@@ -42,7 +42,7 @@ body {
     color: black;
 }
 
-.details, .none {
+.details {
     font-weight: bold;
     font-size: 2em;
     border-style: dashed none none none;

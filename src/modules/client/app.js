@@ -21,10 +21,23 @@ var Router = {
             callback = selector
             selector = null
         }
-        document.addEventListener(event, function () {
-            if (selector === null || this.matchesSelector(selector)) {
-                return callback.apply(this, arguments)
-            }
+        document.addEventListener(event, function (ev) {
+            var result,
+                target = ev.target
+            do {
+                if (selector === null || (target.webkitMatchesSelector &&
+                    target.webkitMatchesSelector(selector))
+                ) {
+                    delete ev.target
+                    ev.target = target
+                    result = callback.apply(this, arguments)
+                }
+            } while (
+                result !== false && 
+                target !== this &&
+                (target = target.parentNode)
+            )
+            return result
         }, true)
     },
     _routes: []

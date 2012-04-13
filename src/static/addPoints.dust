@@ -4,5 +4,5 @@
         <input type="button" class="inc" value="Give 5 points" />
     </div>
 {:else}
-    <div class="none">Click a player to select</div>
+    <div class="details none">Click a player to select</div>
 {/selected_name}
