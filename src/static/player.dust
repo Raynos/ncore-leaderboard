@@ -1,4 +1,4 @@
-<div class="player {selected}">
+<div class="player {selected}" data-id="{id}">
     <span class="name">{name}</span>
     <span class="score">{score}</span>
 </div>

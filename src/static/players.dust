@@ -2,6 +2,7 @@
     {#members}
         <form class="player" method="POST" action="/players/{id}">
             <input type="hidden" name="_method" value="put"/>
+            <input type="hidden" name="id" value="{id}"/>
             <input name="name" value="{name}"/>
             <input name="score" value="{score}"/>
             <input type="submit" value="Update player"/>

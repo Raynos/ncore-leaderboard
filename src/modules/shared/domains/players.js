@@ -2,25 +2,16 @@ var uuid = require("node-uuid"),
     extend = require("pd").extend
 
 module.exports = {
-    setup: function (done) {
-        var self = this
-        this.mongo.collection("Players", function (collection) {
-            console.log("gettingCollection", arguments)
-            if (typeof window !== "undefined") {
-                window.winnar = collection
-            }
-            for (var key in collection) {
-                if (!self[key]) {
-                    self[key] = collection[key]
-                }
-            }
-            self._update = collection
-            done()
-        })
+    setup: function () {
+        this.collection = this.mongo.collection("Players")
+
+        if (typeof window !== "undefined") {
+            window.winnar = this.collection
+        }
     },
     getAll: function (callback) {
         //console.log(this.find.toString(), this)
-        this.find({}, {
+        this.collection.find({}, {
             sort: { score: -1 }
         }, function (err, cursor) {
             if (err) {
@@ -30,14 +21,14 @@ module.exports = {
         })
     },
     create: function (data, callback) {
-        this.insert({
+        this.collection.insert({
             name: data.name,
             id: uuid(),
             score: data.score
         }, callback)
     },
     update: function (data, callback) {
-        this._update({
+        this.collection.update({
             id: data.id
         }, {
             $set: {
@@ -47,13 +38,13 @@ module.exports = {
         }, callback)
     },
     incrementScore: function (id, callback) {
-        this.findAndModify({
+        this.collection.findAndModify({
             id: id
-        }, {
+        }, [["id", -1 ]], {
             $inc: {
                 score: 5
             }
-        }, callback)
+        }, { new: true }, callback)
     },
     expose: ["getAll", "create", "update", "incrementScore"]
 }

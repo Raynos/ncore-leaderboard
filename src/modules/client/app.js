@@ -52,7 +52,6 @@ module.exports = {
         Object.keys(this.routes).forEach(function (name) {
             this.routes[name].start(Router)
         }, this)
-        console.log("setup routes")
         document.addEventListener("DOMContentLoaded", done)
     }
 }

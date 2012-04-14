@@ -37,9 +37,18 @@ module.exports = {
     convertToSpans: function (node) {
         this.util.template("/player.dust", {
             name: node.elements.name.value,
-            score: node.elements.score.value
+            score: node.elements.score.value,
+            id: node.elements.id.value
         }, function (err, frag) {
             node.parentNode.replaceChild(frag, node)
+        })
+    },
+    renderPlayer: function (player) {
+        var playerNode = composite.By.class("player").filter(function (node) {
+            return node.dataset.id === player.id
+        })[0]
+        this.util.template("/player.dust", player, function (err, frag) {
+            playerNode.parentNode.replaceChild(frag, playerNode)
         })
     }
 }
