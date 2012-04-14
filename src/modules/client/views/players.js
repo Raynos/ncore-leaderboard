@@ -48,7 +48,15 @@ module.exports = {
             return node.dataset.id === player.id
         })[0]
         this.util.template("/player.dust", player, function (err, frag) {
+            var prev = playerNode.previousElementSibling,
+                parentNode = playerNode.parentNode,
+                prevScore = prev && +prev.children[1].textContent
+
             playerNode.parentNode.replaceChild(frag, playerNode)
+
+            if (prevScore !== null && prevScore < player.score) {
+                parentNode.insertBefore(prev.nextElementSibling, prev)
+            }
         })
     }
 }

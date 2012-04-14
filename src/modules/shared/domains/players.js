@@ -10,7 +10,6 @@ module.exports = {
         }
     },
     getAll: function (callback) {
-        //console.log(this.find.toString(), this)
         this.collection.find({}, {
             sort: { score: -1 }
         }, function (err, cursor) {
